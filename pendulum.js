@@ -8,7 +8,10 @@ class pendulum
 
         var options = 
         {
-            isStatic : false
+            isStatic : false,
+            restitution : 1,
+            friction : 0,
+            density : 0.8
         }
 
         this.body = Bodies.circle(this.x,this.y,this.radius/2,options);
@@ -25,4 +28,3 @@ class pendulum
         pop();
     }
 }
-
