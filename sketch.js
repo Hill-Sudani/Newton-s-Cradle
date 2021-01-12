@@ -4,11 +4,13 @@ const World = Matter.World;
 const Bodies = Matter.Bodies;
 const Body = Matter.Body;
 const Constraint = Matter.Constraint;
+const MouseConstraint = Matter.MouseConstraint;
 
 var roof1;
 var ball1,ball2,ball3,ball4,ball5;
 var diameter = 40;
 var rope1;
+var mConstraint;
 
 function preload()
 {
@@ -22,6 +24,16 @@ function setup()
 
 	engine = Engine.create();
 	world = engine.world;
+	
+	let canvasmouse = Mouse.create(canvas.elt);
+	canvasmouse.pixelRatio = pixelDensity();
+	
+	let options = 
+	    {
+		    mouse : canvasmouse
+	    }
+	mConstraint = MouseConstraint.create(engine, options);
+	World.add(world.mConstraint);
 
 	//Create the Bodies Here.
 	roof1 = new roof(800,height/4,width/7,20);
@@ -64,13 +76,9 @@ function draw()
  
 }
 
-function keyPressed()
+function mouseDragged()
 {
-	if(keyCode===UP_ARROW)
-	{
-		Matter.Body.applyForce(ball1.body,ball1.body.position,{x:15,y:-5})
-	}
+	Matter.Body.setPosition(pendulum1.body, {x : mouseX, y : mouseY});
 }
-
 
 
