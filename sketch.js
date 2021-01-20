@@ -34,7 +34,7 @@ function setup()
 		    mouse : canvasmouse
 	    }
 	mConstraint = MouseConstraint.create(engine, options);
-	World.add(world.mConstraint);
+	World.add(world,mConstraint);
 
 	//Create the Bodies Here.
 	roof1 = new roof(800,height/4,width/7,20);
